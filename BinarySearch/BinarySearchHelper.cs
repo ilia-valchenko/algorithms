@@ -13,12 +13,12 @@ namespace BinarySearch
             // array = array.OrderBy(x => x).ToArray();
 
             var commaSeparatedArrayItems = string.Join(",", array.Select(x => x.ToString()));
-            Debug.WriteLine($"Array: [{commaSeparatedArrayItems}].");
+            Debug.WriteLine($"Array (length={array.Length}): [{commaSeparatedArrayItems}].");
 
             int low = 0;
             int high = array.Length - 1;
 
-            while (low < high)
+            while (low <= high)
             {
                 int mid = (low + high) / 2;
                 var possibleValue = array[mid];
@@ -41,7 +41,7 @@ namespace BinarySearch
                 else // The instance follows
                 {
                     low = mid + 1;
-                    newArray = array.Skip(mid).Take(high - low).ToArray();
+                    newArray = array.Skip(mid + 1).Take((high + 1) - low).ToArray();
                 }
 
                 return Search(newArray, item, iterationNumber);
